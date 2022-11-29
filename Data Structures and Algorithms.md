@@ -33,6 +33,7 @@
 		- [4.3 Bubble Sort](#43-bubble-sort)
 		- [4.4 Merge Sort](#44-merge-sort)
 		- [4.5 Quicksort](#45-quicksort)
+		- [4.6 Sort K](#46-sort-k)
 
 <!-- /TOC -->
 
@@ -738,3 +739,17 @@ p.pop();
 #### Visualization
 
 ![QuickSort](Sorting/Animations/Quicksort.gif)
+
+-------------------------------------------------------
+### 4.6 Sort-K
+#### Idea
+1. Use partial_sort or nth_element to order the K smallest numbers (defined by custom comparator)
+
+```c++
+std::partial_sort(vector.begin(), vector.begin() + k, vector.end(), my_comparator); // note k, [first, middle)
+std::nth_element(vector.begin(), vector.begin() + k-1, vector.end(), my_comparator); // note k-1, [first, middle]
+
+eg. 
+nth_element(points.begin(), points.begin() + K - 1, points.end(), [](vector<int>& p, vector<int>& q){return p[0]*p[0] + p[1]*p[1] < q[0]*q[0] + q[1]*q[1];});
+
+```
